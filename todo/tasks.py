@@ -4,6 +4,7 @@ from pathlib import Path
 from rich.console import Console
 
 TASKS_FILE = Path.home() / ".todo_tasks.json"
+PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 console = Console()
 
 def load_tasks():
@@ -15,6 +16,10 @@ def save_tasks(tasks):
     TASKS_FILE.write_text(json.dumps(tasks, indent=2))
 
 def add_task(name, priority):
+    if priority != "low" and priority != "medium" and priority != "high":
+        console.print("[bright_red]Wrong priority! (only [bright_green]low, medium, high[/bright_green])[/bright_red]")
+        return
+
     tasks = load_tasks()
     tasks.append({"name": name, "done": False, "priority": priority})
     save_tasks(tasks)
@@ -25,8 +30,11 @@ def list_tasks():
     if not tasks:
         console.print("[bright_red]No tasks yet![/bright_red]")
         return
+
+    sorted_tasks = sorted(tasks, key=lambda t: PRIORITY_ORDER.get(t.get("priority", "medium"), 1))
+
     console.print("[bright_cyan]List of tasks:[/bright_cyan]")
-    for i, task in enumerate(tasks):
+    for i, task in enumerate(sorted_tasks):
         color = "white"
         if task["priority"] == "medium":
             color = "bright_yellow"
