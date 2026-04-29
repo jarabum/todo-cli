@@ -1,4 +1,5 @@
 import json
+from operator import index
 from pathlib import Path
 from rich.console import Console
 
@@ -59,3 +60,17 @@ def remove_task(task_id):
     tasks.pop(task_id - 1)
     save_tasks(tasks)
     console.print(f"Removed [bright_red]{removed_task}[bright_red]")
+
+def clear_tasks():
+    tasks = load_tasks()
+    removedtasks = []
+
+    for task in tasks:
+        if task["done"]:
+            removedtasks.append(task["name"])
+
+    save_tasks([task for task in tasks if not task["done"]])
+
+    console.print("[bright_cyan]Removed:[/bright_cyan]")
+    for task in removedtasks:
+        console.print(f"[bright_red]{task}[/bright_red]")

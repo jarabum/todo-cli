@@ -18,6 +18,7 @@ todo list                 # list all tasks
 todo done 1               # mark task 1 as done
 todo done 1               # mark task 1 as not done
 todo remove 1             # delete task 1
+todo clear                # remove all done tasks
 ```
 
 ## Example
@@ -34,7 +35,7 @@ $ todo list
 2. ○ walk the dog
 
 $ todo done 1
-Task: 'buy milk' marked as done
+Task: buy milk marked as done
 
 $ todo list
 1. ✓ buy milk
