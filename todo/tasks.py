@@ -43,11 +43,11 @@ def complete_task(task_id):
     if tasks[task_id - 1]["done"] == True:
         tasks[task_id - 1]["done"] = False
         save_tasks(tasks)
-        print(f"{tasks[task_id - 1]['name']} marked as not done")
+        console.print(f"[white]{tasks[task_id - 1]['name']}[/white] marked as not done")
     elif tasks[task_id - 1]["done"] == False:
         tasks[task_id - 1]["done"] = True
         save_tasks(tasks)
-        print(f"{tasks[task_id - 1]['name']} marked as done")
+        console.print(f"[bright_green]{tasks[task_id - 1]['name']}[/bright_green] marked as done")
 
 def remove_task(task_id):
     tasks = load_tasks()
