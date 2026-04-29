@@ -7,6 +7,7 @@ def main():
 
     add_parser = subparsers.add_parser("add", help="Add a new task")
     add_parser.add_argument("task", help="The task to add")
+    add_parser.add_argument("--priority", default="low", help="Sets the priority of a task (low, medium, high)")
 
     subparsers.add_parser("list", help="List all tasks")
 
@@ -16,12 +17,12 @@ def main():
     remove_parser = subparsers.add_parser("remove", help="Remove task from the list")
     remove_parser.add_argument("task_id", type=int, help="Task id from the list")
 
-    subparsers.add_parser("clear", help="Clear all tasks that are done")
+    clear_parser = subparsers.add_parser("clear", help="Clear all tasks that are done")
 
     args = parser.parse_args()
 
     if args.command == "add":
-        add_task(args.task)
+        add_task(args.task, args.priority)
     elif args.command == "list":
         list_tasks()
     elif args.command == "done":
