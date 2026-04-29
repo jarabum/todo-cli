@@ -52,10 +52,10 @@ def complete_task(task_id):
 def remove_task(task_id):
     tasks = load_tasks()
     if task_id < 1 or task_id > len(tasks):
-        print(f"No task number {task_id}")
+        console.print(f"[bright_red]No task number {task_id}[/bright_red]")
         return
 
     removed_task = tasks[task_id - 1]["name"]
     tasks.pop(task_id - 1)
     save_tasks(tasks)
-    print(f"Removed '{removed_task}'")
+    console.print(f"Removed [bright_red]{removed_task}[bright_red]")
