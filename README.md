@@ -4,7 +4,7 @@ A simple command-line todo list that works anywhere on your system.
 
 ## Installation
 
-Clone the repository and install with [pipx](https://pipx.pypa.io) inside the project folder:
+Clone the repo and install with [pipx](https://pipx.pypa.io):
 
 ```bash
 git clone https://github.com/jarabum/todo-cli.git
