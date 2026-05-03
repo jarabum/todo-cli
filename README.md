@@ -11,6 +11,11 @@ git clone https://github.com/jarabum/todo-cli.git
 cd todo-cli
 pipx install .
 ```
+If you want autocomplete add this line to .bashrc:
+
+```bash
+eval "$(register-python-argcomplete todo)"
+```
 
 ## Usage
 
