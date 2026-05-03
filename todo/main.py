@@ -1,4 +1,5 @@
 import argparse
+import argcomplete
 from todo.tasks import add_task, list_tasks, complete_task, remove_task, clear_tasks
 
 def main():
@@ -19,6 +20,7 @@ def main():
 
     clear_parser = subparsers.add_parser("clear", help="Clear all tasks that are done")
 
+    argcomplete.autocomplete(parser)
     args = parser.parse_args()
 
     if args.command == "add":
