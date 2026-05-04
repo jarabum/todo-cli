@@ -52,7 +52,7 @@ def list_tasks():
 
 def complete_task(task_id):
     tasks = load_tasks()
-    if task_id < 1 or task_id > len(tasks):
+    if not (1 <= task_id <= len(tasks)):
         console.print(f"[bright_red]No task number {task_id}![/bright_red]")
         return
 
