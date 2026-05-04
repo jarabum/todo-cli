@@ -13,7 +13,8 @@ def load_tasks():
     return json.loads(TASKS_FILE.read_text())
 
 def save_tasks(tasks):
-    TASKS_FILE.write_text(json.dumps(tasks, indent=2))
+    sorted_tasks = sorted(tasks, key=lambda t: PRIORITY_ORDER.get(t.get("priority", "medium"), 1))
+    TASKS_FILE.write_text(json.dumps(sorted_tasks, indent=2))
 
 def add_task(name, priority):
     if priority != "low" and priority != "medium" and priority != "high":
@@ -55,11 +56,11 @@ def complete_task(task_id):
         console.print(f"[bright_red]No task number {task_id}![/bright_red]")
         return
 
-    if tasks[task_id - 1]["done"] == True:
+    if tasks[task_id - 1]["done"]:
         tasks[task_id - 1]["done"] = False
         save_tasks(tasks)
         console.print(f"[white]{tasks[task_id - 1]['name']}[/white] marked as not done")
-    elif tasks[task_id - 1]["done"] == False:
+    else:
         tasks[task_id - 1]["done"] = True
         save_tasks(tasks)
         console.print(f"[bright_green]{tasks[task_id - 1]['name']}[/bright_green] marked as done")
