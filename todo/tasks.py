@@ -2,6 +2,7 @@ import json
 from operator import index
 from pathlib import Path
 from rich.console import Console
+import os
 
 TASKS_FILE = Path.home() / ".todo_tasks.json"
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
@@ -89,3 +90,10 @@ def clear_tasks():
     console.print("[bright_cyan]Removed:[/bright_cyan]")
     for task in removedtasks:
         console.print(f"[bright_red]{task}[/bright_red]")
+
+def clear_all_tasks():
+    choice = console.input("Do you want to delete [bright_red]ALL tasks[/bright_red] (y/N): ")
+    if choice.lower() == "y":
+        console.print("[bright_red]DELETING ALL TASKS[/bright_red]")
+        if TASKS_FILE.exists:
+            os.remove(TASKS_FILE)

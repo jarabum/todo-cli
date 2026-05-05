@@ -1,6 +1,6 @@
 import argparse
 import argcomplete
-from todo.tasks import add_task, list_tasks, complete_task, remove_task, clear_tasks
+from todo.tasks import add_task, list_tasks, complete_task, remove_task, clear_tasks, clear_all_tasks
 
 def main():
     parser = argparse.ArgumentParser(description="A simple todo CLI")
@@ -19,6 +19,8 @@ def main():
     remove_parser.add_argument("task_id", type=int, help="Task id from the list")
 
     clear_parser = subparsers.add_parser("clear", help="Clear all tasks that are done")
+    
+    clearall_parser = subparsers.add_parser("clearall", help="Clears ALL tasks")
 
     argcomplete.autocomplete(parser)
     args = parser.parse_args()
@@ -33,6 +35,8 @@ def main():
         remove_task(args.task_id)
     elif args.command == "clear":
         clear_tasks()
+    elif args.command == "clearall":
+        clear_all_tasks()
     else:
         parser.print_help()
 
